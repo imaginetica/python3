@@ -29,9 +29,26 @@ def rename_pdf_files(root_folder, search_string, replacement_string):
             os.rename(item_path, new_item_path)
             print(f"Renamed: {item} -> {new_item}")
 
-# Replace 'path_to_search' with the root path where you want to start the search
+def create_test_directory(path, depth=3, num_folders=5, num_files=10):
+    os.makedirs(path, exist_ok=True)
+    
+    for _ in range(num_folders):
+        folder_name = ''.join(random.choices(string.ascii_lowercase, k=5))
+        folder_path = os.path.join(path, folder_name)
+        os.makedirs(folder_path)
+        
+        for _ in range(num_files):
+            file_name = ''.join(random.choices(string.ascii_lowercase, k=8))
+            file_extension = random.choice([".pdf", ".txt"])
+            file_path = os.path.join(folder_path, file_name + file_extension)
+            
+            with open(file_path, "w") as f:
+                f.write("Test content")
+
+# Replace 'test_directory_path' with the desired path for the test directory
+test_directory_path = '/path/to/test_directory'
 path_to_search = '/path/to/search'
 search_string = "_OCR_221117"  # Specified search string
 replacement_string = ""        # Specified replacement string
 
-rename_pdf_files(path_to_search, search_string, replacement_string)
+rename_pdf_files(test_directory_path, search_string, replacement_string)
