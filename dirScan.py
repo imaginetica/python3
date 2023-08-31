@@ -1,6 +1,7 @@
 import os
 import random
 import string
+import argparse
 
 def rename_pdf_files(root_folder, search_string, replacement_string):
     
