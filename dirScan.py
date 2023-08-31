@@ -45,10 +45,31 @@ def create_test_directory(path, depth=3, num_folders=5, num_files=10):
             with open(file_path, "w") as f:
                 f.write("Test content")
 
-# Replace 'test_directory_path' with the desired path for the test directory
-test_directory_path = '/path/to/test_directory'
-path_to_search = '/path/to/search'
-search_string = "_OCR_221117"  # Specified search string
-replacement_string = ""        # Specified replacement string
+# # Replace 'test_directory_path' with the desired path for the test directory
+# test_directory_path = '/path/to/test_directory'
+# path_to_search = '/path/to/search'
+# search_string = "_OCR_221117"  # Specified search string
+# replacement_string = ""        # Specified replacement string
 
-rename_pdf_files(test_directory_path, search_string, replacement_string)
+# rename_pdf_files(test_directory_path, search_string, replacement_string)
+
+def main():
+    parser = argparse.ArgumentParser(description="Test Application")
+    parser.add_argument("path", help="Path for test directory")
+    parser.add_argument("search_string", help="Search string for renaming PDF files")
+    parser.add_argument("replacement_string", help="Replacement string for renaming PDF files")
+
+    args = parser.parse_args()
+
+    test_directory_path = args.path
+    search_string = args.search_string
+    replacement_string = args.replacement_string
+
+    # Create the test directory
+    create_test_directory(test_directory_path)
+
+    # Rename PDF files in the test directory
+    rename_pdf_files(test_directory_path, search_string, replacement_string)
+
+if __name__ == "__main__":
+    main()
